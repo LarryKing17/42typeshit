@@ -1,0 +1,13 @@
+/* XPM */
+static char *north[] = {
+"8 8 1 1",
+"R c #FF0000",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR",
+"RRRRRRRR"
+};
