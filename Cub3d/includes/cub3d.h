@@ -6,19 +6,21 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:50:47 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/11/26 16:43:19 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:29:40 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <math.h>
-#include "libft/h"
+
+# include "libft.h"
+# include "get_next_line.h"
 
 typedef struct s_rgb
 {
@@ -60,5 +62,11 @@ int parse_file(char *path, t_config *cfg);
 int parse_line(char *line, t_config *cfg, int *map_started);
 
 int parse_texture(char *line, char **texture_path);
+
+int	parse_color(char *line, t_rgb *color);
+
+int	parse_map(char *line, t_config *cfg);
+
+void ft_free_tab(char **tab);
 
 #endif

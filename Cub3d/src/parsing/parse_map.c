@@ -6,39 +6,27 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:52:18 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/11/27 17:01:03 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:05:24 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int parse_map(char *line, t_config *cfg)
+
+/*
+**  Ajoute une ligne brute de map dans cfg->map.grid
+**  - on realloc une ligne de plus
+**  - on duplique la ligne
+*/
+static int add_map_line(t_config *cfg, char *line)
 {
     char **new_grid;
-    int   i;
+    int i;
 
-    // Si c'est la première ligne de la map → initialisation
-    if (cfg->map.height == 0)
-    {
-        cfg->map.grid = malloc(sizeof(char *) * 2);
-        if (!cfg->map.grid)
-            return (1);
-
-        cfg->map.grid[0] = ft_strdup(line);
-        cfg->map.grid[1] = NULL;
-
-        cfg->map.height = 1;
-        cfg->map.width = ft_strlen(line);
-
-        return (0);
-    }
-
-    // Si la map a déjà commencé → reallocer pour ajouter une ligne
     new_grid = malloc(sizeof(char *) * (cfg->map.height + 2));
     if (!new_grid)
-        return (1);
+        return (error_exit("Malloc failed in map realloc", cfg), 1);
 
-    // Copier les anciennes lignes dans le nouveau tableau
     i = 0;
     while (i < cfg->map.height)
     {
@@ -46,17 +34,31 @@ int parse_map(char *line, t_config *cfg)
         i++;
     }
 
-    // Ajouter la nouvelle ligne à la suite
     new_grid[i] = ft_strdup(line);
+    if (!new_grid[i])
+        return (free(new_grid), error_exit("Malloc failed", cfg), 1);
+
     new_grid[i + 1] = NULL;
 
     free(cfg->map.grid);
     cfg->map.grid = new_grid;
-
-    // Mise à jour des dimensions
     cfg->map.height++;
-    if (ft_strlen(line) > cfg->map.width)
-        cfg->map.width = ft_strlen(line);
+
+    return (0);
+}
+
+/*
+**  parse_map():
+**  → chaque ligne passée ici est forcément une ligne de map
+**  → les lignes vides après le début sont interdites
+*/
+int parse_map(char *line, t_config *cfg)
+{
+    if (line[0] == '\0')
+        return (error_exit("Empty line inside map", cfg), 1);
+
+    if (add_map_line(cfg, line) != 0)
+        return (1);
 
     return (0);
 }

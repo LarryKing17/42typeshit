@@ -6,44 +6,52 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:47:36 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/11/26 16:48:24 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/08 14:42:25 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int parse_color(char *str, int *color)
+#include "cub3d.h"
+
+static int convert_rgb_to_int(int r, int g, int b)
 {
-    char    **split;
-    int     r, g, b;
+    return ((r << 16) | (g << 8) | b);
+}
 
-    // Supprime les espaces avant la couleur
-    while (*str == ' ' || *str == '\t')
-        str++;
+static int is_valid_rgb(int r, int g, int b)
+{
+    if (r < 0 || r > 255)
+        return 0;
+    if (g < 0 || g > 255)
+        return (0);
+    if (b < 0 || b > 255)
+        return (0);
+    return (1);
+}
 
-    // On split sur les virgules : "220,100,0" → ["220","100","0"]
-    split = ft_split(str, ',');
-    if (!split)
-        return (error_msg("Malloc error"));
+int parse_color(char *line, t_rgb *color)
+{
+    char **split;
+    int     r;
+    int     g;
+    int     b;
 
-    // On doit avoir exactement 3 valeurs sinon erreur
-    if (!split[0] || !split[1] || !split[2] || split[3])
+    split = ft_split(line, ',');
+    if(!split)
+        return (1);
+    if (!split[0] || !split[1] || !split[2] || !split[3])
     {
         ft_free_tab(split);
-        return (error_msg("Color must be R,G,B"));
+        return (1);
     }
-
-    // Convertir les 3 chaînes en entiers
     r = ft_atoi(split[0]);
     g = ft_atoi(split[1]);
     b = ft_atoi(split[2]);
 
-    ft_free_tab(split);
-
-    // Vérifier que chaque valeur est dans [0..255]
-    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-        return (error_msg("RGB values must be 0-255"));
-
-    // Convertir en un entier final : 0xRRGGBB
-    *color = (r << 16) | (g << 8) | b;
-
+    if (!is_valid_rgb(r, g, b))
+        return (1);
+    color->red = r;
+    color->green = g;
+    color->blue = b;
+    color->value = convert_rgb_to_int(r, g, b);
     return (0);
 }

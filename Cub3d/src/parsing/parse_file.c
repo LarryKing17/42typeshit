@@ -6,7 +6,7 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:15:29 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/11/18 16:17:20 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:44:54 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ int parse_file(char *path, t_config *cfg)
 		free(line);
 
 		if (!trim)
-			return (error_exit("Malloc failed", cfg) close(fd), 1);
+			return (error_exit("Malloc failed", cfg), close(fd), 1);
 		if (trim[0] == '\0' && map_started == 0)
 		{
 			free(trim);
 			continue;
 		}
-
 
 		if (parse_line(trim, cfg, &map_started) != 0)
 		{
@@ -45,6 +44,8 @@ int parse_file(char *path, t_config *cfg)
 		free(trim);
 	}
 	close(fd);
+	if (validate_map(cfg) != 0)
+		return (1);
 	return (0);
 }
 
