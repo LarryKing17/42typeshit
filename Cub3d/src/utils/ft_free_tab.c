@@ -6,11 +6,11 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:44:38 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/11/26 16:46:11 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/10 15:33:53 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 
 void ft_free_tab(char **tab)
 {
