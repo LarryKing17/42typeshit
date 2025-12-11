@@ -6,7 +6,7 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 15:02:22 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/12/10 15:36:53 by zvalenti         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:33:07 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ void	free_config(t_config *cfg)
         }
         free(cfg->map.grid);
     }
+}
+
+void	error_exit(const char *msg, t_config *cfg)
+{
+    if (msg)
+		fprintf(stderr, "Error\n%s\n", msg);
+    free_config(cfg);
+    exit(EXIT_FAILURE);
 }

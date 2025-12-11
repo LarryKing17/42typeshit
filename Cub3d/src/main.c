@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 12:12:12 by zvalenti          #+#    #+#             */
-/*   Updated: 2025/12/11 15:47:55 by zvalenti         ###   ########.fr       */
+/*   Created: 2025/12/11 15:45:16 by zvalenti          #+#    #+#             */
+/*   Updated: 2025/12/11 15:45:19 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+#include "cub3d.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+int	main(int argc, char **argv)
+{
+    t_config	cfg;
 
-char	*get_next_line(int fd);
-int		ft_strlen(const char *str);
-char	*ft_strdup(const char *str);
-char	*ft_strchr(const char *s, int i);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-#endif
+    if (argc != 2)
+    {
+        fprintf(stderr, "Usage: %s <map.cub>\n", argv[0]);
+        return (1);
+    }
+    if (parse_file(argv[1], &cfg) != 0)
+    {
+        fprintf(stderr, "Parsing failed.\n");
+        return (1);
+    }
+    printf("Parsing OK!\n");
+    free_config(&cfg);
+    return (0);
+}

@@ -73,6 +73,12 @@ int		check_player(t_config *cfg);
 int		check_map_closed(t_config *cfg);
 int		check_top_bottom_walls(t_config *cfg);
 
+// UTILS
+void	free_config(t_config *cfg);
+int		is_empty_line(char *s);
+void	free_split(char **tab);
+
 void ft_free_tab(char **tab);
+void	error_exit(const char *msg, t_config *cfg);
 
 #endif
