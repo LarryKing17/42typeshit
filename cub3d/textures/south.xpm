@@ -1,0 +1,13 @@
+/* XPM */
+static char *south[] = {
+"8 8 1 1",
+"B c #0000FF",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB",
+"BBBBBBBB"
+};
