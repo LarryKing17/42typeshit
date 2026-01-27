@@ -1,5 +1,5 @@
 
-# _This project has been created as part of the 42 curriculum by shvalma, alrighi_.
+# _This project has been created as part of the 42 curriculum by zvalenti, idridi.
 
 ## Description
 
@@ -19,7 +19,7 @@ make
 
 This will compile the program and the included MiniLibX (Linux) in `mlx/` and produce the executable `cub3D`.
 
-Cleaning
+Cleanings
 
 ```bash
 make clean    # remove object files
