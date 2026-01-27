@@ -140,5 +140,5 @@ No code logic or project source files were modified by the AI assistant as part 
 
 ## Credits
 
-Authors: shvalma, alrighi_
+Authors: zvalenti, idridi
 
