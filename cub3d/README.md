@@ -1,5 +1,5 @@
 
-# _This project has been created as part of the 42 curriculum by zvalenti, idridi.
+# _This project has been created as part of the 42 curriculum by zvalenti, idridi_
 
 ## Description
 
