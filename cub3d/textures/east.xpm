@@ -1,13 +1,14 @@
 /* XPM */
 static char *east[] = {
-"8 8 1 1",
-"Y c #FFFF00",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY",
-"YYYYYYYY"
+"8 8 2 1",
+". c #4E342E", /* Terre/Roche sombre */
+"X c #66BB6A", /* Mousse vert vif */
+"...XX...",
+"..XXX...",
+"....X...",
+"X.......",
+"XX......",
+".X......",
+"...XX...",
+"....X..."
 };
