@@ -6,7 +6,7 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:49:31 by idridi            #+#    #+#             */
-/*   Updated: 2026/01/26 16:15:55 by zvalenti         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:56:14 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,31 @@ int	key_press(int keycode, t_data *d)
 		free_scene(&d->scene);
 		exit(0);
 	}
-	if (keycode == 119) // W
-		key_handler(d , 1, 1);
+	if (keycode == 119)
+		key_handler(d, 1, 1);
 	else if (keycode == 115)
-		key_handler(d , -1, -1);
+		key_handler(d, -1, -1);
 	else if (keycode == 100)
 		right_strafe(d, 6.0);
 	else if (keycode == 97)
 		left_strafe(d, 6.0);
-    else if (keycode == 65363 || keycode == 65361)
+	else if (keycode == 65363 || keycode == 65361)
 		rot_press(keycode, d);
-    draw(d);
-    return (0);
+	draw(d);
+	return (0);
 }
 
-int close_window(void *param)
+int	close_window(void *param)
 {
-	t_data *d = (t_data *)param;
+	t_data	*d;
+
+	d = (t_data *)param;
 	if (d)
 		free_scene(&d->scene);
 	exit(0);
 }
 
-int init_data(t_data *d)
+int	init_data(t_data *d)
 {
 	d->mlx = mlx_init();
 	d->win = mlx_new_window(d->mlx, WIDTH, HEIGHT, "MLX Player");
@@ -63,7 +65,6 @@ int init_data(t_data *d)
 	mlx_loop(d->mlx);
 	return (0);
 }
-
 
 void	key_handler(t_data *d, int col, int row)
 {
@@ -84,4 +85,3 @@ void	key_handler(t_data *d, int col, int row)
 		d->py = new_y;
 	}
 }
-

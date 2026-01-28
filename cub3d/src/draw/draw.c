@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idridi <idridi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 17:27:54 by idridi            #+#    #+#             */
-/*   Updated: 2026/01/22 13:50:22 by idridi           ###   ########.fr       */
+/*   Updated: 2026/01/28 16:49:13 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ void	calculate_texture_x(t_data *d, t_ray *ray)
 	t_texture	*tex;
 
 	if (ray->side == 0)
-		wall_x = d->py + ray->perp_wall_dist * ray->ray_dir_y;
+		wall_x = (d->py / (double)TILE_SIZE) + ray->perp_wall_dist
+			* ray->ray_dir_y;
 	else
-		wall_x = d->px + ray->perp_wall_dist * ray->ray_dir_x;
+		wall_x = (d->px / (double)TILE_SIZE) + ray->perp_wall_dist
+			* ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex = select_texture(d, ray);
 	ray->tex_x = (int)(wall_x * (double)tex->width);
@@ -102,8 +104,3 @@ t_texture	*select_texture(t_data *d, t_ray *ray)
 			return (&d->tex_no);
 	}
 }
-
-
-
-
-
