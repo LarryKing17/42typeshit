@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycastin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idridi <idridi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:45:12 by idridi            #+#    #+#             */
-/*   Updated: 2026/01/22 13:48:53 by idridi           ###   ########.fr       */
+/*   Updated: 2026/01/28 17:15:34 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ void	perform_dda(t_data *d, t_ray *ray)
 	pddp(ray, d);
 }
 
+void	cast_ray_y(t_data *d, t_ray *ray)
+{
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = ((d->py / TILE_SIZE) - ray->map_y)
+			* ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - (d->py / TILE_SIZE))
+			* ray->delta_dist_y;
+	}
+}
 
 void	cast_ray(t_data *d, t_ray *ray, int x)
 {
@@ -66,23 +81,16 @@ void	cast_ray(t_data *d, t_ray *ray, int x)
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = ((d->px / TILE_SIZE) - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = ((d->px / TILE_SIZE) - ray->map_x)
+			* ray->delta_dist_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - (d->px / TILE_SIZE)) * ray->delta_dist_x;
+		ray->side_dist_x = (ray->map_x + 1.0 - (d->px / TILE_SIZE))
+			* ray->delta_dist_x;
 	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = ((d->py / TILE_SIZE) - ray->map_y) * ray->delta_dist_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - (d->py / TILE_SIZE)) * ray->delta_dist_y;
-	}
+	cast_ray_y(d, ray);
 }
 
 void	draw_3d_view(t_data *d)

@@ -6,7 +6,7 @@
 /*   By: zvalenti <zvalenti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 13:50:47 by zvalenti          #+#    #+#             */
-/*   Updated: 2026/01/27 15:28:19 by zvalenti         ###   ########.fr       */
+/*   Updated: 2026/01/28 17:31:45 by zvalenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,30 +83,24 @@ typedef struct s_tp
 
 typedef struct s_ray
 {
-	double camera_x;  // Position x dans le plan camera (-1 à 1)
-	double ray_dir_x; // Direction du rayon
-	double		ray_dir_y;
-
-	int map_x; // Position dans la grille
-	int			map_y;
-
-	double side_dist_x; // Distance jusqu'au prochain côté x
-	double side_dist_y; // Distance jusqu'au prochain côté y
-
-	double delta_dist_x; // Distance entre chaque côté x
-	double delta_dist_y; // Distance entre chaque côté y
-
-	int step_x; // Direction du pas (-1 ou 1)
-	int			step_y;
-
-	int hit;  // Mur touché ?
-	int side; // Côté touché (0=NS, 1=EW)
-
-	double perp_wall_dist; // Distance perpendiculaire au mur
-	int line_height;       // Hauteur de la ligne à dessiner
-	int			draw_start;
-	int			draw_end;
-	int			tex_x;
+	double	camera_x; // Position x dans le plan camera (-1 à 1)
+	double	ray_dir_x; // Direction du rayon
+	double	ray_dir_y;
+	int		map_x; // Position dans la grille
+	int		map_y;
+	double	side_dist_x; // Distance jusqu'au prochain côté x
+	double	side_dist_y; // Distance jusqu'au prochain côté y
+	double	delta_dist_x; // Distance entre chaque côté x
+	double	delta_dist_y; // Distance entre chaque côté y
+	int		step_x; // Direction du pas (-1 ou 1)
+	int		step_y;
+	int		hit; // Mur touché ?
+	int		side; // Côté touché (0=NS, 1=EW)
+	double	perp_wall_dist; // Distance perpendiculaire au mur
+	int		line_height; // Hauteur de la ligne à dessiner
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
 }				t_ray;
 
 typedef struct s_data
